@@ -22,7 +22,14 @@ const XTable = () => {
   };
 
   const sortByViews = () => {
-    const sortedData = [...data].sort((a, b) => b.views - a.views);
+    const sortedData = [...data].sort((a, b) => {
+      // Compare views first in descending order
+      const viewsComparison = b.views - a.views;
+      if (viewsComparison !== 0) return viewsComparison;
+      
+      // If views are the same, compare dates in descending order
+      return new Date(b.date) - new Date(a.date);
+    });
     setData(sortedData);
   };
 
