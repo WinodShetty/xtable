@@ -10,12 +10,19 @@ const XTable = () => {
   ]);
 
   const sortByDate = () => {
-    const sortedData = [...data].sort((a, b) => new Date(a.date) - new Date(b.date));
+    const sortedData = [...data].sort((a, b) => {
+      // Compare dates first in descending order
+      const dateComparison = new Date(b.date) - new Date(a.date);
+      if (dateComparison !== 0) return dateComparison;
+      
+      // If dates are the same, compare views in descending order
+      return b.views - a.views;
+    });
     setData(sortedData);
   };
 
   const sortByViews = () => {
-    const sortedData = [...data].sort((a, b) => a.views - b.views);
+    const sortedData = [...data].sort((a, b) => b.views - a.views);
     setData(sortedData);
   };
 
