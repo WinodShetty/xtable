@@ -11,11 +11,8 @@ const XTable = () => {
 
   const sortByDate = () => {
     const sortedData = [...data].sort((a, b) => {
-      // Compare dates first in descending order
       const dateComparison = new Date(b.date) - new Date(a.date);
       if (dateComparison !== 0) return dateComparison;
-      
-      // If dates are the same, compare views in descending order
       return b.views - a.views;
     });
     setData(sortedData);
@@ -23,11 +20,8 @@ const XTable = () => {
 
   const sortByViews = () => {
     const sortedData = [...data].sort((a, b) => {
-      // Compare views first in descending order
       const viewsComparison = b.views - a.views;
       if (viewsComparison !== 0) return viewsComparison;
-      
-      // If views are the same, compare dates in descending order
       return new Date(b.date) - new Date(a.date);
     });
     setData(sortedData);
@@ -35,7 +29,7 @@ const XTable = () => {
 
   return (
     <div>
-      <h2>Date and Views Table</h2>
+      <h1>Date and Views Table</h1>
       <button onClick={sortByDate}>Sort by Date</button>
       <button onClick={sortByViews}>Sort by Views</button>
       <table border="1">
